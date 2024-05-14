@@ -288,20 +288,20 @@ input {
 <%@ include file="/header.jsp" %>
     <p class="tip"></p>
 <div class="cont">
+ <form action="${path0 }/JoinPro.do" method="post">
   <div class="form sign-in">
-    <form action="${path0 }/JoinPro.do" method="post"
     <h2>전주여행을 시작하세요.</h2>
     <label>
         <span>ID</span>
-        <input type="ID" />
+        <input type="text" name="id" id="id"/>
       </label>
       <label>
         <span>PASSWORD</span>
-        <input type="password" />
+        <input type="password" name="password" id="password" />
       </label>
       <label>
         <span>PASSWORD CONFIRM</span>
-        <input type="password" />
+        <input type="password" name="password confrim" id="password confirm" />
       </label><br><br><br>
       <button type="button" class="submit">NEXT</button>
       <button type="button" class="fb-btn">CANCEL</button>
@@ -325,36 +325,37 @@ input {
         <h2>전주여행을 시작하세요.</h2><br><br>
         <label>
             <span>NAME</span>
-            <input type="NAME" />
+            <input type="text" name="name" id="name" />
           </label>
           <label>
             <span>e-MAIL</span>
-            <input type="email" />
+            <input type="email" name="email" id="email" />
             </label>
             <label>
             <span>PHONE-NUMBER</span>
-            <input type="tel" />
+            <input type="tel" name="PhoneNumber" id="PhoneNumber" />
           </label>
           <label>
             <span>ADDRESS</span>&nbsp;<button type="button" class="address" onclick="findAddr()">주소검색</button>
              
             <div class="address-wrapper"> 
-              <input type="text" readOnly/>
+              <input type="text" name="address" id="address" readOnly/>
             </div>
           </label>
           <label>
               <span>SPECIFIC ADDR</span>
-              <input type="text"/>
+              <input type="text" name="SpAddr" id="SpAddr"/>
             </label>
           <label>
               <span>POST-NUMBER</span>
-              <input type="text" readonly/>
+              <input type="text" name="PosNumber" id="PosNumber" readonly/>
             </label>
       <button type="button" class="submit2">Sign Up</button>
       <button type="button" class="fb-btn2">BACK</button>
     </div>
   </form>
   </div>
+</form> 
 </div>
 
 <script>
@@ -372,8 +373,8 @@ input {
   document.querySelector('.fb-btn2').addEventListener('click', function() {
       document.querySelector('.cont').classList.remove('s--signup');
   });
-</script>
-<script>
+
+
   function findAddr() {
       new daum.Postcode({
           oncomplete: function(data) {

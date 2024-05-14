@@ -249,16 +249,16 @@ input {
 <%@ include file="/header.jsp" %>
     <p class="tip"></p>
     <div class="cont">
+      <form action="${path0 }/LogInPro.do" method="post">
         <div class="form sign-in">
-          <form action="${path0 }/LogInPro.do" method="post"></form>
             <h2>재방문을 환영합니다.</h2>
             <label>
                 <span>ID</span>
-                <input type="ID" />
+                <input type="text" name="id" id="id"/>
             </label>
             <label>
                 <span>Password</span>
-                <input type="password" />
+                <input type="password" name="password" id="password" />
             </label>
             <br><br><br>
             <button type="button" class="submit">Log In</button>
@@ -279,6 +279,7 @@ input {
                 <button type="button" class="submit">Sign Up</button>
             </div>
         </div>
+      </form> 
     </div>
     <script>
         document.querySelector('.img__btn').addEventListener('click', function() {
