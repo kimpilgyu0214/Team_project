@@ -97,7 +97,6 @@ button {
   top: 0;
   width: 1300px;
   height: 100%;
-  background-image: url(./images/drew-bae-TWskAX7I0JU-unsplash.jpg);
   background-size: cover;
   transition: transform 1.2s ease-in-out;
 }
@@ -202,7 +201,7 @@ h2 {
   cursor: pointer;
   width: 100px; 
   height: 24px; 
-  padding: 6px 10px; 
+  padding: auto 10px; 
   float:right;
   transition: transform 1.2s ease-in-out;
 }
@@ -215,7 +214,7 @@ h2 {
 label {
   display:flow-root;
   width: 260px;
-  margin: 45px auto 0;
+  margin: 35px auto 0;
   text-align: center;
 }
 label span {
@@ -290,6 +289,7 @@ input {
     <p class="tip"></p>
 <div class="cont">
   <div class="form sign-in">
+    <form action="${path0 }/JoinPro.do" method="post"
     <h2>전주여행을 시작하세요.</h2>
     <label>
         <span>ID</span>
@@ -307,7 +307,7 @@ input {
       <button type="button" class="fb-btn">CANCEL</button>
   </div>
   <div class="sub-cont">
-    <div class="img">
+    <div class="img"><div class="img" style="background-image: url('${hpath }/images/join.jpg');"></div>
       <div class="img__text m--up">
         <h2>이미 회원이신가요?</h2><br><br>
         <p>이미 회원이시라면 <br>로그인하셔서 그동안의<br>새로운 소식들을 만나보세요!</p>
@@ -336,7 +336,8 @@ input {
             <input type="tel" />
           </label>
           <label>
-            <span>ADDRESS</span>&nbsp;<button type="button" class="address">주소검색</button>
+            <span>ADDRESS</span>&nbsp;<button type="button" class="address" onclick="findAddr()">주소검색</button>
+             
             <div class="address-wrapper"> 
               <input type="text" readOnly/>
             </div>
@@ -352,8 +353,10 @@ input {
       <button type="button" class="submit2">Sign Up</button>
       <button type="button" class="fb-btn2">BACK</button>
     </div>
+  </form>
   </div>
 </div>
+
 <script>
   document.querySelector('.img__btn').addEventListener('click', function() {
       location.href = 'login.jsp';
@@ -370,6 +373,25 @@ input {
       document.querySelector('.cont').classList.remove('s--signup');
   });
 </script>
+<script>
+  function findAddr() {
+      new daum.Postcode({
+          oncomplete: function(data) {
+              console.log(data);
+              var roadAddr = data.roadAddress;
+              var jibunAddr = data.jibunAddress;
+              document.getElementById("postcode").value = data.zonecode;
+              if(roadAddr !== '') {
+                  document.getElementById("addr1").value = roadAddr;
+              } else if(jibunAddr !== ''){
+                  document.getElementById("addr1").value = jibunAddr;
+              }
+              document.getElementById("addr2").focus();
+          }
+      }).open();
+  }
+</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <%@ include file="/footer.jsp" %>
 </body>
 </html> 
